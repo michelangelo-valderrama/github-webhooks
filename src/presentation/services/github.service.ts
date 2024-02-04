@@ -8,18 +8,10 @@ export class GitHubService {
   }
 
   onPush(payload: GitHubPushPayload): string {
-    const { repository, created, deleted, pusher } = payload
+    const { repository, pusher, head_commit } = payload
 
     console.log(payload)
 
-    if (created) {
-      return `New push created in ${repository.full_name} by ${pusher.name}`
-    }
-
-    if (deleted) {
-      return `Push deleted in ${repository.full_name} by ${pusher.name}`
-    }
-
-    return `Push in ${repository.full_name} by ${pusher.name}`
+    return `Push in ${repository.full_name} by ${pusher.name}: ${head_commit.message}`
   }
 }
