@@ -4,14 +4,12 @@ export class GitHubService {
   onStar(payload: GitHubStarPayload): string {
     const { action, sender, repository } = payload
 
-    return `User ${sender.login} ${action} star on ${repository.full_name}`
+    return `User ${sender.login} ${action} star on ${repository.name}`
   }
 
   onPush(payload: GitHubPushPayload): string {
     const { repository, pusher, head_commit } = payload
 
-    console.log(payload)
-
-    return `Push in ${repository.full_name} by ${pusher.name}: ${head_commit.message}`
+    return `Push in ${repository.name} by ${pusher.name}: ${head_commit.message}`
   }
 }

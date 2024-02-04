@@ -2,6 +2,7 @@ import express from "express"
 import { envs } from "./config"
 import { GitHubController } from "./presentation/github/controller"
 import { GitHubService } from "./presentation/services/github.service"
+import { DiscordService } from "./presentation/services/discord.service"
 ;(() => {
   main()
 })()
@@ -11,7 +12,10 @@ async function main() {
 
   app.use(express.json())
 
-  const controller = new GitHubController(new GitHubService())
+  const controller = new GitHubController(
+    new GitHubService(),
+    new DiscordService()
+  )
 
   app.post("/api/github", controller.webHookHandler)
 
