@@ -18,8 +18,8 @@ export class GitHubController {
       case "star":
         message = this.gitHubService.onStar(payload)
         break
-      case "push":
-        message = this.gitHubService.onPush(payload)
+      case "issues":
+        message = this.gitHubService.onIssue(payload)
         break
       default:
         message = `Unknown event ${githubEvent}`
